@@ -106,16 +106,35 @@ tar -xzf google-cloud-cli-*.tar.gz
 - **"Modify profile to update your $PATH?"** → `Y` 입력
 - **쉘 프로파일 경로** → 그냥 Enter (기본값 수락)
 
-설치 후 **반드시 터미널을 새로 열거나** `source ~/.zshrc`(또는 해당 쉘 프로파일)를 실행해야 `gcloud` 명령이 인식된다.
+설치 후 PATH를 현재 셸에 반영한다:
+
+```bash
+source ~/.zshrc   # zsh
+source ~/.bashrc  # bash
+```
 
 ### 2-4. Windows 설치
 
-Windows는 인스톨러를 사용한다:
+PowerShell에서 다음 두 명령어를 순서대로 실행한다:
 
-1. https://cloud.google.com/sdk/docs/install#windows 에서 **Google Cloud CLI installer** 다운로드
-2. 다운로드한 `.exe` 파일 실행 → 기본 옵션으로 "Next" 클릭하며 진행
-3. 마지막 화면에서 **"Run gcloud init" 체크를 해제**한다 (Phase 3에서 별도로 진행)
-4. 설치 완료 후 **PowerShell 또는 CMD를 새로 열기**
+```powershell
+# 1. 설치 프로그램 다운로드
+(New-Object Net.WebClient).DownloadFile("https://dl.google.com/dl/cloudsdk/channels/rapid/GoogleCloudSDKInstaller.exe", "$env:Temp\GoogleCloudSDKInstaller.exe")
+
+# 2. 설치 프로그램 실행
+& $env:Temp\GoogleCloudSDKInstaller.exe
+```
+
+설치 화면이 뜨면:
+1. 기본 옵션으로 **Next** 클릭하며 진행
+2. 마지막 화면에서 **"Run gcloud init" 체크를 해제** (Phase 3에서 별도 진행)
+3. **Finish** 클릭
+
+설치 후 PATH를 현재 셸에 반영한다:
+
+```powershell
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+```
 
 ### 2-5. 설치 확인 및 초기 로그인
 
