@@ -199,20 +199,35 @@ gws auth setup --login
    5. 나머지 항목은 기본값 그대로 **저장 후 계속** 클릭하며 끝까지 진행
 3. **API 활성화**: Gmail, Drive, Sheets, Docs, Calendar 등 — 자동으로 처리됨
 4. **OAuth 클라이언트 ID**: Desktop app 타입으로 자동 생성됨
-5. **인증 정보 저장**: `~/.config/gws/client_secret.json`에 저장됨
+5. **client_secret.json 저장**: 화면에 클라이언트 ID와 시크릿이 표시되면 **JSON 다운로드** 버튼을 클릭하거나, 표시된 JSON을 복사한다
 
-### 3-4. 설정 확인
+### 3-4. client_secret.json 저장
+
+다운로드하거나 복사한 JSON을 `~/.config/gws/client_secret.json`에 저장한다:
 
 ```bash
-ls -la ~/.config/gws/
+# 디렉토리가 없으면 생성
+mkdir -p ~/.config/gws
+
+# 복사한 JSON을 붙여넣기 (Ctrl+V 후 Ctrl+D로 저장)
+cat > ~/.config/gws/client_secret.json
 ```
 
 Windows:
 ```powershell
-dir $env:USERPROFILE\.config\gws\
+mkdir -Force "$env:USERPROFILE\.config\gws"
+
+# 메모장으로 열어서 JSON 붙여넣기 후 저장
+notepad "$env:USERPROFILE\.config\gws\client_secret.json"
 ```
 
-`client_secret.json` 파일이 보이면 성공.
+### 3-5. 설정 확인
+
+```bash
+ls -la ~/.config/gws/client_secret.json
+```
+
+파일이 보이면 성공.
 
 ---
 
